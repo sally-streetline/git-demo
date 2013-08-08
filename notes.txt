@@ -13,7 +13,8 @@ git clone git@github.com:sally-streetline/git-demo.git
 Or we could use HTTPS:
 https://github.com/sally-streetline/git-demo.git
 
-4. Before making changes to repo we want to make sure global config has our user name and email. This way git/github properly keeps track of who changed what.
+4. Before making changes to repo we want to make sure global config has our user
+name and email. This way git/github properly keeps track of who changed what.
 git config --global user.name "Your Name"
 git config --global user.email "you@streetline.net"
 
@@ -50,7 +51,8 @@ git status
 Show that there are untracked changes. How to add?
 git add hello.rb
 git add hello.js
-Now commit changes (remember, you ALWAYS need to do this before any push, pull or merge)
+Now commit changes (remember, you ALWAYS need to do this before any push, pull 
+or merge)
 git commit -a -m "Added hello files"
 And push to remote
 git push
@@ -91,7 +93,8 @@ git push origin test
 
 16. Everyone should pull to get the new branch.
 git pull
-This should pull all branches. We could also just do 'git pull test' if you know the branch name.
+This should pull all branches. We could also just do 'git pull test' if you 
+know the branch name.
 Look at README.md. It shouldn't have changed yet.
 Now switch to the 'test' branch.
 git checkout test
@@ -102,7 +105,8 @@ git checkout master
 git merge test
 Is there a merge conflict? Then we can fix it manually.
 
-18. We can also prevent certain files from being added to repo with .gitignore file.
+18. We can also prevent certain files from being added to repo with .gitignore 
+file.
 create a file to be ignored: vi ignore.me
 Now edit gitignore
 vi .gitignore
@@ -112,11 +116,14 @@ git status
 
 19. Totally messed up your local repo? Easy to reset to last commit.
 git reset --hard
-If you want to reset to an even earlier commit you need the commit hash id (SHA - secure hash algorithm). You can find these through 'git log'.
-As a convenience, git requires only as many digits of the hash id as are necessary to uniquely identify it within the repo.
+If you want to reset to an even earlier commit you need the commit hash id (SHA 
+- secure hash algorithm). You can find these through 'git log'.
+As a convenience, git requires only as many digits of the hash id as are 
+necessary to uniquely identify it within the repo.
 Usually 6-7 digits are enough.
 
-20. Alternately you may want to stash uncommitted work and move to another branch.
+20. Alternately you may want to stash uncommitted work and move to another 
+branch.
 http://git-scm.com/book/en/Git-Tools-Stashing
 First make changes to repo.
 git stash
