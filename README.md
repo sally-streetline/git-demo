@@ -1,4 +1,4 @@
 git-demo
 ========
 
-Repository used for gitdemo
+This is the demo README file.
