@@ -1,0 +1,129 @@
+Intro to Git demo
+Sally Calpo <sally@streetline.com>
+8/8/2013
+
+1. Make sure everyone has git account.
+If not, go through https://help.github.com/articles/set-up-git
+
+2. Log into github. We want to look for the repo to clone.
+Open in browser: http://github.com/sally-streetline/git-demo
+
+3. Clone demo repository to local repo with SSH:
+git clone git@github.com:sally-streetline/git-demo.git
+Or we could use HTTPS:
+https://github.com/sally-streetline/git-demo.git
+
+4. Before making changes to repo we want to make sure global config has our user name and email. This way git/github properly keeps track of who changed what.
+git config --global user.name "Your Name"
+git config --global user.email "you@streetline.net"
+
+5. Now I edit the README file.
+vi README.md
+(change with whatever text)
+
+6. Show in git status that README was modified.
+git status
+
+7. Commit my changes.
+git commit -a -m "Edited README"
+
+8. Push changes.
+git push
+(or, to be exact, git push origin master)
+origin - shorthand meaning the origin remote repo that was cloned from
+master - shorthand meaning the master (default) branch
+
+9. Everyone in demo should pull changes locally.
+In root of git-demo repo, type: git pull
+(or to be exact, git pull origin master)
+Explain that 'git pull' is actually a shorthand combining the following:
+git fetch
+git checkout master
+git merge origin/master
+
+Right now, we only have one branch. Will look into branches in a moment.
+
+9. Now show how to add a file.
+cp ~/hello* .
+This adds both hello.rb and hello.js to the repo.
+git status
+Show that there are untracked changes. How to add?
+git add hello.rb
+git add hello.js
+Now commit changes (remember, you ALWAYS need to do this before any push, pull or merge)
+git commit -a -m "Added hello files"
+And push to remote
+git push
+
+10. Everyone in demo should pull changes locally again: git pull
+Now everyone has these files.
+
+11. What if you want to remove a file. We only want the hello.js.
+git rm hello.rb
+git commit -a -m "Deleted hello.rb"
+git push
+
+12. We can also shorthand (do all git add and git rm at the same time)
+cp ~/hello.rb .
+rm hello.js
+git add -A
+See that we have now committed changes - hello.js is deleted and hello.rb added
+git status
+Now push changes
+git push
+
+13. Again, everyone in demo should execute git pull to get changes to local.
+Have people try to add/remove files themselves.
+
+14. List the history of commits so far.
+git log
+
+15. Now let's branch!
+Create 'test' branch
+git branch test
+git checkout test
+At this point we have created a branch off of master.
+We can change something in test.
+vi README.md
+Commit and push.
+git commit -a -m "Edited README for new test branch"
+git push origin test
+
+16. Everyone should pull to get the new branch.
+git pull
+This should pull all branches. We could also just do 'git pull test' if you know the branch name.
+Look at README.md. It shouldn't have changed yet.
+Now switch to the 'test' branch.
+git checkout test
+Should see that README is now changed to the test branch version.
+
+17. What if we want to merge the test changes to master.
+git checkout master
+git merge test
+Is there a merge conflict? Then we can fix it manually.
+
+18. We can also prevent certain files from being added to repo with .gitignore file.
+create a file to be ignored: vi ignore.me
+Now edit gitignore
+vi .gitignore
+Put '*.me' as first line of gitignore and save.
+Now check that ignore.me won't be in repo!
+git status
+
+19. Totally messed up your local repo? Easy to reset to last commit.
+git reset --hard
+If you want to reset to an even earlier commit you need the commit hash id (SHA - secure hash algorithm). You can find these through 'git log'.
+As a convenience, git requires only as many digits of the hash id as are necessary to uniquely identify it within the repo.
+Usually 6-7 digits are enough.
+
+20. Alternately you may want to stash uncommitted work and move to another branch.
+http://git-scm.com/book/en/Git-Tools-Stashing
+First make changes to repo.
+git stash
+Go to another branch.
+git checkout test
+Finally, apply the stashed changes.
+git stash apply
+
+21. If there's time, play with git tag.
+http://git-scm.com/book/en/Git-Basics-Tagging
